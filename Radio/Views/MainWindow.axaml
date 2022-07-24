@@ -23,15 +23,11 @@
                     <StackPanel Grid.Column="1">
                         <Button Name="Delete" Width="160">Delete</Button>
                         <Button Name="Update" Width="160">Update</Button>
-                        <Button Name="Play" Width="160">Button</Button>
+                        <Button Name="Play" Width="160">Play</Button>
                     </StackPanel>
                 </Grid>
             </DataTemplate>
-   
         </ListBox.ItemTemplate>
     </ListBox>
-
     
-
-
 </Window>

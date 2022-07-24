@@ -17,9 +17,13 @@ namespace Radio
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                var vm = new MainWindowViewModel();
+                vm.Objects.Add(new Unit { Id = 1, UnitData = "Unit Data" });
+                vm.Objects.Add(new Component { Id = 2, ComponentData = "Component Data" });
+                
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(),
+                    DataContext = vm,
                 };
             }
 

@@ -23,6 +23,7 @@
                     <StackPanel Grid.Column="1">
                         <Button Name="Delete" Width="160">Delete</Button>
                         <Button Name="Update" Width="160">Update</Button>
+                        <Button Name="Play" Width="160">Button</Button>
                     </StackPanel>
                 </Grid>
             </DataTemplate>

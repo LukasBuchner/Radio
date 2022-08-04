@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Radio.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Radio.Views.AddFmRadioView">
+    
+    <Design.DataContext>
+        <viewModels:AddFmRadioViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel>
+        <TextBlock Text="Station Name:" Grid.Column="0"/>
+        <TextBox Text="{Binding Name }" Watermark="Enter the station's name!"/>
+        <TextBlock Text="Frequency:" Grid.Column="0"/>
+        <TextBox Text="{Binding Frequency}" Watermark="Enter the frequency"/>
+        <Button>Cancel</Button>
+        <Button>Save</Button>
+    </StackPanel>
+</UserControl>

@@ -1,42 +1,44 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Radio.Models;
 
 namespace Radio.ViewModels
 {
-    public class Base
-    {
-        public int Id { get; set; }
-    }
-
-    public class Unit : Base
-    {
-        public string UnitData { get; set; }
-    }
-
-    public class Component : Base
-    {
-        public string ComponentData { get; set; }
-    }
-    
     public class MainWindowViewModel : ViewModelBase
     {
         public string Greeting => "Welcome to Avalonia!";
         
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Base> Objects { get; }
-            = new ObservableCollection<Base>();
+        public ObservableCollection<OnlineRadio> OnlineRadios { get; }
+            = new ObservableCollection<OnlineRadio>();
 
-        private Base selectedObject;
+        public ObservableCollection<FmRadio> FmRadios { get; }
+            = new ObservableCollection<FmRadio>();
+        
+        private OnlineRadio selectedOnlineRadio;
 
-        public Base SelectedObject
+        public OnlineRadio SelectedOnlineRadio
         {
-            get { return selectedObject; }
+            get { return selectedOnlineRadio; }
             set
             {
-                selectedObject = value;
+                selectedOnlineRadio = value;
                 PropertyChanged?.Invoke(this,
-                    new PropertyChangedEventArgs(nameof(SelectedObject)));
+                    new PropertyChangedEventArgs(nameof(SelectedOnlineRadio)));
+            }
+        }
+        
+        private FmRadio selectedFmRadio;
+
+        public FmRadio SelectedFmRadio
+        {
+            get { return selectedFmRadio; }
+            set
+            {
+                selectedFmRadio = value;
+                PropertyChanged?.Invoke(this,
+                    new PropertyChangedEventArgs(nameof(SelectedFmRadio)));
             }
         }
     }

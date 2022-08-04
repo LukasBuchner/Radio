@@ -3,8 +3,6 @@
         xmlns:vm="using:Radio.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:System.Reactive;assembly=System.Reactive"
-        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.Primitives"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Radio.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -14,20 +12,53 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <ListBox Items="{Binding Objects}"
-             SelectedItem="{Binding SelectedObject}">
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <Grid ColumnDefinitions="*,Auto">
-                    <TextBlock Text="{Binding Id}" Grid.Column="0"/>
-                    <StackPanel Grid.Column="1">
-                        <Button Name="Delete" Width="160">Delete</Button>
-                        <Button Name="Update" Width="160">Update</Button>
-                        <Button Name="Play" Width="160">Play</Button>
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
-    
+    <Grid ColumnDefinitions="*,*">
+        <DockPanel Grid.Column="0">
+            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center">Add online radio</Button>
+            <ListBox Grid.Column="0"  
+                     Items="{Binding OnlineRadios}" 
+                     SelectedItem="{Binding SelectedOnlineRadio}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="{Binding Id}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Url}" Grid.Column="0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <Button Name="Delete" Width="160">Delete</Button>
+                                <Button Name="Update" Width="160">Update</Button>
+                                <Button Name="Play" Width="160">Play</Button>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel> 
+        
+        <DockPanel Grid.Column="1">
+            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center">Add FM radio</Button>
+            <ListBox Grid.Column="1"  
+                     Items="{Binding FmRadios}" 
+                     SelectedItem="{Binding SelectedFmRadio}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="{Binding Id}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Frequency}" Grid.Column="0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <Button Name="Delete" Width="160">Delete</Button>
+                                <Button Name="Update" Width="160">Update</Button>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+   
+    </Grid>
 </Window>

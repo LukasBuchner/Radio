@@ -10,12 +10,17 @@
         <viewModels:AddOnlineRadioViewModel/>
     </Design.DataContext>
     
-    <StackPanel>
-        <TextBlock Text="Station Name:" Grid.Column="0"/>
-        <TextBox Text="{Binding Name }" Watermark="Enter the station's name!"/>
-        <TextBlock Text="Url:" Grid.Column="0"/>
-        <TextBox Text="{Binding Url}" Watermark="Enter the URL"/>
-        <Button>Cancel</Button>
-        <Button>Save</Button>
-    </StackPanel>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button>Cancel</Button>
+            <Button>Save</Button>
+        </StackPanel>
+        
+        <StackPanel>
+            <TextBlock Text="Station Name:" Grid.Column="0"/>
+            <TextBox Text="{Binding Name }" Watermark="Enter the station's name!"/>
+            <TextBlock Text="Url:" Grid.Column="0"/>
+            <TextBox Text="{Binding Url}" Watermark="Enter the URL"/>
+        </StackPanel>
+    </DockPanel>
 </UserControl>

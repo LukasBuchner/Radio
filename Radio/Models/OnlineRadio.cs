@@ -1,6 +1,6 @@
 namespace Radio.Models;
 
-public class OnlineRadio : RadioStation
+public record OnlineRadio : RadioStation
 {
     public string Url { get; set; }
 }

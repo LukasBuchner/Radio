@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Radio.Models;
 
-public class RadioStation
+public record RadioStation
 {
     public int Id { get; set; }
     public string Name { get; set; }

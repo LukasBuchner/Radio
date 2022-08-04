@@ -11,7 +11,11 @@
     </Design.DataContext>
     
     <DockPanel>
-        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center">Add FM radio</Button>
+        <Button DockPanel.Dock="Bottom" 
+                HorizontalAlignment="Center"
+                Command="{Binding $parent[Window].DataContext.AddFmRadio}">
+            Add FM radio
+        </Button>
         <ListBox
                 Items="{Binding FmRadios}" 
                 SelectedItem="{Binding SelectedFmRadio}">

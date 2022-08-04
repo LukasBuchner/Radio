@@ -11,7 +11,11 @@
     </Design.DataContext>
     
     <DockPanel>
-        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center">Add online radio</Button>
+        <Button DockPanel.Dock="Bottom" 
+                HorizontalAlignment="Center"
+                Command="{Binding $parent[Window].DataContext.AddOnlineRadio}">
+            Add online radio
+        </Button>
         <ListBox  
                  Items="{Binding OnlineRadios}" 
                  SelectedItem="{Binding SelectedOnlineRadio}">

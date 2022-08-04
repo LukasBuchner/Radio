@@ -1,20 +1,22 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Reactive.Linq;
+using ReactiveUI;
 using Radio.Models;
 using Radio.Services;
-using ReactiveUI;
 
 namespace Radio.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _currentViewModel;
+    private RadiosViewModel _radiosViewModel;
 
     public MainWindowViewModel(Database database)
     {
-        CurrentViewModel = new RadiosViewModel(database);
+        CurrentViewModel = _radiosViewModel = new RadiosViewModel(database);
     }
-
+    
     public ViewModelBase CurrentViewModel
     {
         get => _currentViewModel;
@@ -23,11 +25,43 @@ public class MainWindowViewModel : ViewModelBase
 
     public void AddFmRadio()
     {
-        CurrentViewModel = new AddFmRadioViewModel();
+        var vm = new AddFmRadioViewModel();
+        
+        Observable.Merge(
+                vm.Save,
+                vm.Cancel.Select(_ => (FmRadio)null))
+            .Take(1)
+            .Subscribe(model =>
+            {
+                if (model != null)
+                {
+                    _radiosViewModel.FmRadiosViewModel.FmRadios.Add(model);
+                }
+
+                CurrentViewModel = _radiosViewModel;
+            });
+
+        CurrentViewModel = vm;
     }
 
     public void AddOnlineRadio()
     {
-        CurrentViewModel = new AddOnlineRadioViewModel();
+        var vm = new AddOnlineRadioViewModel();
+        
+        Observable.Merge(
+                vm.Save,
+                vm.Cancel.Select(_ => (OnlineRadio)null))
+            .Take(1)
+            .Subscribe(model =>
+            {
+                if (model != null)
+                {
+                    _radiosViewModel.OnlineRadiosViewModel.OnlineRadios.Add(model);
+                }
+
+                CurrentViewModel = _radiosViewModel;
+            });
+
+        CurrentViewModel = vm;
     }
 }

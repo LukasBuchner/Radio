@@ -2,7 +2,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Radio.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Radio.Views.RadiosView">
-    Welcome to Avalonia!
+    
+    <Design.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="*,*">
+        <DockPanel Grid.Column="0">
+            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center">Add online radio</Button>
+            <ListBox Grid.Column="0"  
+                     Items="{Binding OnlineRadios}" 
+                     SelectedItem="{Binding SelectedOnlineRadio}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="{Binding Id}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Url}" Grid.Column="0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <Button Name="Delete" Width="160">Delete</Button>
+                                <Button Name="Update" Width="160">Update</Button>
+                                <Button Name="Play" Width="160">Play</Button>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel> 
+        
+        <DockPanel Grid.Column="1">
+            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center">Add FM radio</Button>
+            <ListBox Grid.Column="1"  
+                     Items="{Binding FmRadios}" 
+                     SelectedItem="{Binding SelectedFmRadio}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="{Binding Id}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Frequency}" Grid.Column="0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <Button Name="Delete" Width="160">Delete</Button>
+                                <Button Name="Update" Width="160">Update</Button>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+    </Grid>
 </UserControl>

@@ -2,44 +2,39 @@
 using System.ComponentModel;
 using Radio.Models;
 
-namespace Radio.ViewModels
+namespace Radio.ViewModels;
+
+public class MainWindowViewModel : ViewModelBase
 {
-    public class MainWindowViewModel : ViewModelBase
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public ObservableCollection<OnlineRadio> OnlineRadios { get; } = new();
+
+    public ObservableCollection<FmRadio> FmRadios { get; } = new();
+
+    private OnlineRadio selectedOnlineRadio;
+
+    public OnlineRadio SelectedOnlineRadio
     {
-        public string Greeting => "Welcome to Avalonia!";
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ObservableCollection<OnlineRadio> OnlineRadios { get; }
-            = new ObservableCollection<OnlineRadio>();
-
-        public ObservableCollection<FmRadio> FmRadios { get; }
-            = new ObservableCollection<FmRadio>();
-        
-        private OnlineRadio selectedOnlineRadio;
-
-        public OnlineRadio SelectedOnlineRadio
+        get => selectedOnlineRadio;
+        set
         {
-            get { return selectedOnlineRadio; }
-            set
-            {
-                selectedOnlineRadio = value;
-                PropertyChanged?.Invoke(this,
-                    new PropertyChangedEventArgs(nameof(SelectedOnlineRadio)));
-            }
+            selectedOnlineRadio = value;
+            PropertyChanged?.Invoke(this,
+                new PropertyChangedEventArgs(nameof(SelectedOnlineRadio)));
         }
-        
-        private FmRadio selectedFmRadio;
+    }
 
-        public FmRadio SelectedFmRadio
+    private FmRadio selectedFmRadio;
+
+    public FmRadio SelectedFmRadio
+    {
+        get => selectedFmRadio;
+        set
         {
-            get { return selectedFmRadio; }
-            set
-            {
-                selectedFmRadio = value;
-                PropertyChanged?.Invoke(this,
-                    new PropertyChangedEventArgs(nameof(SelectedFmRadio)));
-            }
+            selectedFmRadio = value;
+            PropertyChanged?.Invoke(this,
+                new PropertyChangedEventArgs(nameof(SelectedFmRadio)));
         }
     }
 }

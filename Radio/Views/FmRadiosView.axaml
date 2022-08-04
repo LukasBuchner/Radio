@@ -7,7 +7,7 @@
              x:Class="Radio.Views.FmRadiosView">
     
     <Design.DataContext>
-        <viewModels:MainWindowViewModel/>
+        <viewModels:FmRadiosViewModel/>
     </Design.DataContext>
     
     <DockPanel>

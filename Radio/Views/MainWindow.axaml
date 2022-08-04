@@ -9,5 +9,9 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Radio">
 
-        <views:RadiosView/>
+        <Design.DataContext>
+                <vm:MainWindowViewModel/>
+        </Design.DataContext>
+        
+        <views:RadiosView DataContext="{Binding RadiosViewModel}"/>
 </Window>

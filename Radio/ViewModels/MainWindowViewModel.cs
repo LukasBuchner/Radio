@@ -1,40 +1,16 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Radio.Models;
+using Radio.Services;
 
 namespace Radio.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    public ObservableCollection<OnlineRadio> OnlineRadios { get; } = new();
-
-    public ObservableCollection<FmRadio> FmRadios { get; } = new();
-
-    private OnlineRadio selectedOnlineRadio;
-
-    public OnlineRadio SelectedOnlineRadio
+    public MainWindowViewModel(Database database)
     {
-        get => selectedOnlineRadio;
-        set
-        {
-            selectedOnlineRadio = value;
-            PropertyChanged?.Invoke(this,
-                new PropertyChangedEventArgs(nameof(SelectedOnlineRadio)));
-        }
+        RadiosViewModel = new RadiosViewModel(database);
     }
-
-    private FmRadio selectedFmRadio;
-
-    public FmRadio SelectedFmRadio
-    {
-        get => selectedFmRadio;
-        set
-        {
-            selectedFmRadio = value;
-            PropertyChanged?.Invoke(this,
-                new PropertyChangedEventArgs(nameof(SelectedFmRadio)));
-        }
-    }
+    
+    public RadiosViewModel RadiosViewModel { get; }
 }

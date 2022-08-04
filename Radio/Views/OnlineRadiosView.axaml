@@ -7,7 +7,7 @@
              x:Class="Radio.Views.OnlineRadiosView">
     
     <Design.DataContext>
-        <viewModels:MainWindowViewModel/>
+        <viewModels:OnlineRadiosViewModel/>
     </Design.DataContext>
     
     <DockPanel>

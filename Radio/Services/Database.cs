@@ -30,7 +30,7 @@ public class Database
         };
     }
 
-    public IEnumerable<OnlineRadio> GetRadios()
+    public IEnumerable<OnlineRadio> GetOnlineRadios()
     {
         _onlineRadio = new OnlineRadio
         {

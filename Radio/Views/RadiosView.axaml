@@ -8,11 +8,11 @@
              x:Class="Radio.Views.RadiosView">
     
     <Design.DataContext>
-        <viewModels:MainWindowViewModel/>
+        <viewModels:RadiosViewModel/>
     </Design.DataContext>
 
     <Grid ColumnDefinitions="*,*">
-        <views:OnlineRadiosView Grid.Column="0"/>
-        <views:FmRadiosView Grid.Column="1"/>
+        <views:OnlineRadiosView Grid.Column="0" DataContext="{Binding OnlineRadiosViewModel}"/>
+        <views:FmRadiosView Grid.Column="1" DataContext="{Binding FmRadiosViewModel}"/>
     </Grid>
 </UserControl>

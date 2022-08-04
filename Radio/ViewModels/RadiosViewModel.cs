@@ -2,7 +2,7 @@ using Radio.Services;
 
 namespace Radio.ViewModels;
 
-public class RadiosViewModel
+public class RadiosViewModel : ViewModelBase
 {
     public RadiosViewModel(Database database)
     {

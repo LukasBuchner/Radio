@@ -5,7 +5,7 @@ using Radio.Models;
 
 namespace Radio.ViewModels;
 
-public class OnlineRadiosViewModel
+public class OnlineRadiosViewModel : ViewModelBase
 {
     public OnlineRadiosViewModel(IEnumerable<OnlineRadio> onlineRadios)
     {

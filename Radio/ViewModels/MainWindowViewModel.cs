@@ -9,8 +9,9 @@ public class MainWindowViewModel : ViewModelBase
 {
     public MainWindowViewModel(Database database)
     {
-        RadiosViewModel = new RadiosViewModel(database);
+        CurrentViewModel = RadiosViewModel = new RadiosViewModel(database);
     }
     
+    public ViewModelBase CurrentViewModel { get; }
     public RadiosViewModel RadiosViewModel { get; }
 }

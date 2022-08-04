@@ -5,7 +5,7 @@ using Radio.Models;
 
 namespace Radio.ViewModels;
 
-public class FmRadiosViewModel
+public class FmRadiosViewModel : ViewModelBase
 {
     public FmRadiosViewModel(IEnumerable<FmRadio> fmRadios)
     {

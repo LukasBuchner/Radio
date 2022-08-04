@@ -12,8 +12,8 @@
     
     <DockPanel>
         <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button>Cancel</Button>
-            <Button>Save</Button>
+            <Button Command="{Binding Cancel}">Cancel</Button>
+            <Button Command="{Binding Save}">Save</Button>
         </StackPanel>
         
         <StackPanel>

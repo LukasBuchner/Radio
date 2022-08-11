@@ -8,8 +8,11 @@ namespace Radio.ViewModels;
 
 public class OnlineRadiosViewModel : ViewModelBase
 {
-    public OnlineRadiosViewModel(IEnumerable<OnlineRadio> onlineRadios)
+    private readonly MainWindowViewModel _mainWindowViewModel;
+
+    public OnlineRadiosViewModel(IEnumerable<OnlineRadio> onlineRadios, MainWindowViewModel mainWindowViewModel)
     {
+        _mainWindowViewModel = mainWindowViewModel;
         OnlineRadios = new ObservableCollection<OnlineRadio>(onlineRadios);
     }
 
@@ -28,5 +31,10 @@ public class OnlineRadiosViewModel : ViewModelBase
             PropertyChanged?.Invoke(this,
                 new PropertyChangedEventArgs(nameof(SelectedOnlineRadio)));
         }
+    }
+
+    public void EditSelectedRadio()
+    {
+        _mainWindowViewModel.EditOnlineRadio(_selectedOnlineRadio);
     }
 }

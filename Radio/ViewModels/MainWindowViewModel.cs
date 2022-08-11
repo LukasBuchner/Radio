@@ -16,7 +16,7 @@ public class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(MongoCRUD mongoCrud)
     {
         _mongoCrud = mongoCrud;
-        CurrentViewModel = new RadiosViewModel(mongoCrud);
+        CurrentViewModel = new RadiosViewModel(mongoCrud, this);
     }
     
     public ViewModelBase CurrentViewModel
@@ -27,22 +27,22 @@ public class MainWindowViewModel : ViewModelBase
 
     public void EditFmRadio(FmRadio fmRadio)
     {
-        var vm = new AddFmRadioViewModel();
-        vm.Frequency = fmRadio.Frequency;
-        vm.Name = fmRadio.Name;
-        
-        Observable.Merge(
-                vm.Save,
-                vm.Cancel.Select(_ => (FmRadio)null))
+        var vm = new EditFmRadioViewModel(fmRadio)
+        {
+            Frequency = fmRadio.Frequency,
+            Name = fmRadio.Name
+        };
+
+        vm.Save.Merge(vm.Cancel.Select(_ => (FmRadio)null))
             .Take(1)
             .Subscribe(model =>
             {
                 if (model != null)
                 {
-                    _mongoCrud.InsertRecord("FmRadios", model);
+                    _mongoCrud.UpsertRecord("FmRadios", model.Guid, model);
                 }
 
-                CurrentViewModel = new RadiosViewModel(_mongoCrud);
+                CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
             });
 
         CurrentViewModel = vm;
@@ -52,9 +52,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         var vm = new AddFmRadioViewModel();
         
-        Observable.Merge(
-                vm.Save,
-                vm.Cancel.Select(_ => (FmRadio)null))
+        vm.Save.Merge(vm.Cancel.Select(_ => (FmRadio)null))
             .Take(1)
             .Subscribe(model =>
             {
@@ -63,7 +61,7 @@ public class MainWindowViewModel : ViewModelBase
                     _mongoCrud.InsertRecord("FmRadios", model);
                 }
 
-                CurrentViewModel = new RadiosViewModel(_mongoCrud);
+                CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
             });
 
         CurrentViewModel = vm;
@@ -73,9 +71,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         var vm = new AddOnlineRadioViewModel();
         
-        Observable.Merge(
-                vm.Save,
-                vm.Cancel.Select(_ => (OnlineRadio)null))
+        vm.Save.Merge(vm.Cancel.Select(_ => (OnlineRadio)null))
             .Take(1)
             .Subscribe(model =>
             {
@@ -84,7 +80,30 @@ public class MainWindowViewModel : ViewModelBase
                     _mongoCrud.InsertRecord("OnlineRadio", model);
                 }
 
-                CurrentViewModel = new RadiosViewModel(_mongoCrud);
+                CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
+            });
+
+        CurrentViewModel = vm;
+    }
+
+    public void EditOnlineRadio(OnlineRadio onlineRadio)
+    {
+        var vm = new EditOnlineRadioViewModel(onlineRadio)
+        {
+            Name = onlineRadio.Name,
+            Url = onlineRadio.Url
+        };
+
+        vm.Save.Merge(vm.Cancel.Select(_ => (OnlineRadio)null))
+            .Take(1)
+            .Subscribe(model =>
+            {
+                if (model != null)
+                {
+                    _mongoCrud.UpsertRecord("OnlineRadios", model.Guid, model);
+                }
+
+                CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
             });
 
         CurrentViewModel = vm;

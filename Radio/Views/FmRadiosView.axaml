@@ -16,7 +16,9 @@
                 Add FM radio
             </Button>
             <Button Name="Delete">Delete</Button>
-            <Button Name="Update">Edit</Button>
+            <Button Command="{Binding EditSelectedRadio}" Name="Update">
+                Edit
+            </Button>
         </StackPanel>
         <ListBox
                 Items="{Binding FmRadios}" 

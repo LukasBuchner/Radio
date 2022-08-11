@@ -1,13 +1,14 @@
+using Radio.Models;
 using Radio.Services;
 
 namespace Radio.ViewModels;
 
 public class RadiosViewModel : ViewModelBase
 {
-    public RadiosViewModel(Database database)
+    public RadiosViewModel(MongoCRUD mongoCrud)
     {
-        OnlineRadiosViewModel = new OnlineRadiosViewModel(database.GetOnlineRadios());
-        FmRadiosViewModel = new FmRadiosViewModel(database.GetFmRadios());
+        OnlineRadiosViewModel = new OnlineRadiosViewModel(mongoCrud.LoadRecords<OnlineRadio>("OnlineRadios"));
+        FmRadiosViewModel = new FmRadiosViewModel(mongoCrud.LoadRecords<FmRadio>("FmRadios"));
     }
     
     public OnlineRadiosViewModel OnlineRadiosViewModel { get; }

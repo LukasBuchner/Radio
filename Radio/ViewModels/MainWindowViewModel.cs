@@ -12,9 +12,9 @@ public class MainWindowViewModel : ViewModelBase
     private ViewModelBase _currentViewModel;
     private RadiosViewModel _radiosViewModel;
 
-    public MainWindowViewModel(Database database)
+    public MainWindowViewModel(MongoCRUD mongoCrud)
     {
-        CurrentViewModel = _radiosViewModel = new RadiosViewModel(database);
+        CurrentViewModel = _radiosViewModel = new RadiosViewModel(mongoCrud);
     }
     
     public ViewModelBase CurrentViewModel

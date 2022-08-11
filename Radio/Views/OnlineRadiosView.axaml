@@ -23,7 +23,7 @@
                 <DataTemplate>
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="{Binding Id}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Guid}" Grid.Column="0"/>
                             <TextBlock Text="{Binding Name}" Grid.Column="0"/>
                             <TextBlock Text="{Binding Url}" Grid.Column="0"/>
                         </StackPanel>

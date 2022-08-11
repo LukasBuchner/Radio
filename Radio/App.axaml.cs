@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -19,6 +19,17 @@ namespace Radio
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 var database = new Database();
+                var radios = new MongoCRUD("Radios");
+                radios.InsertRecord("FmRadios", new FmRadio
+                {
+                    Frequency = "88.80", Genres = new List<string> { "Pop", "Top40" }, Name = "Hitradio",
+                    Region = "Austria"
+                });
+                radios.InsertRecord("OnlineRadios", new OnlineRadio
+                {
+                    Guid = new Guid(), Genres = new List<string> { "House", "Alternative" }, Name = "Lounge.music",
+                    Url = "www.lounge.music"
+                });
 
                 desktop.MainWindow = new MainWindow
                 {

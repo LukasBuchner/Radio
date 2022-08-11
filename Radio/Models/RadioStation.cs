@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Generic;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Radio.Models;
 
 public record RadioStation
 {
-    public int Id { get; set; }
+    [BsonId]
+    public Guid Guid { get; set; }
     public string Name { get; set; }
     public List<string> Genres { get; set; }    
 }

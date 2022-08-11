@@ -10,11 +10,13 @@ namespace Radio.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _currentViewModel;
-    private RadiosViewModel _radiosViewModel;
+    //private RadiosViewModel _radiosViewModel;
+    private MongoCRUD _mongoCrud;
 
     public MainWindowViewModel(MongoCRUD mongoCrud)
     {
-        CurrentViewModel = _radiosViewModel = new RadiosViewModel(mongoCrud);
+        _mongoCrud = mongoCrud;
+        CurrentViewModel = new RadiosViewModel(mongoCrud);
     }
     
     public ViewModelBase CurrentViewModel
@@ -35,10 +37,10 @@ public class MainWindowViewModel : ViewModelBase
             {
                 if (model != null)
                 {
-                    _radiosViewModel.FmRadiosViewModel.FmRadios.Add(model);
+                    _mongoCrud.InsertRecord("FmRadios", model);
                 }
 
-                CurrentViewModel = _radiosViewModel;
+                CurrentViewModel = new RadiosViewModel(_mongoCrud);
             });
 
         CurrentViewModel = vm;
@@ -56,10 +58,10 @@ public class MainWindowViewModel : ViewModelBase
             {
                 if (model != null)
                 {
-                    _radiosViewModel.OnlineRadiosViewModel.OnlineRadios.Add(model);
+                    _mongoCrud.InsertRecord("OnlineRadio", model);
                 }
 
-                CurrentViewModel = _radiosViewModel;
+                CurrentViewModel = new RadiosViewModel(_mongoCrud);
             });
 
         CurrentViewModel = vm;

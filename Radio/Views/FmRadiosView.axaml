@@ -11,11 +11,13 @@
     </Design.DataContext>
     
     <DockPanel>
-        <Button DockPanel.Dock="Bottom" 
-                HorizontalAlignment="Center"
-                Command="{Binding $parent[Window].DataContext.AddFmRadio}">
-            Add FM radio
-        </Button>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+            <Button Command="{Binding $parent[Window].DataContext.AddFmRadio}">
+                Add FM radio
+            </Button>
+            <Button Name="Delete">Delete</Button>
+            <Button Name="Update">Edit</Button>
+        </StackPanel>
         <ListBox
                 Items="{Binding FmRadios}" 
                 SelectedItem="{Binding SelectedFmRadio}">
@@ -26,10 +28,6 @@
                             <TextBlock Text="{Binding Guid}" Grid.Column="0"/>
                             <TextBlock Text="{Binding Name}" Grid.Column="0"/>
                             <TextBlock Text="{Binding Frequency}" Grid.Column="0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <Button Name="Delete" Width="160">Delete</Button>
-                            <Button Name="Update" Width="160">Update</Button>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

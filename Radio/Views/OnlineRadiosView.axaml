@@ -11,11 +11,15 @@
     </Design.DataContext>
     
     <DockPanel>
-        <Button DockPanel.Dock="Bottom" 
-                HorizontalAlignment="Center"
-                Command="{Binding $parent[Window].DataContext.AddOnlineRadio}">
-            Add online radio
-        </Button>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+            <Button Command="{Binding $parent[Window].DataContext.AddOnlineRadio}">
+                Add online radio
+            </Button>
+            <Button Name="Delete">Delete</Button>
+            <Button Name="Update">Edit</Button>
+            <Button Name="Play">Play</Button>
+        </StackPanel>
+        
         <ListBox  
                  Items="{Binding OnlineRadios}" 
                  SelectedItem="{Binding SelectedOnlineRadio}">
@@ -26,11 +30,6 @@
                             <TextBlock Text="{Binding Guid}" Grid.Column="0"/>
                             <TextBlock Text="{Binding Name}" Grid.Column="0"/>
                             <TextBlock Text="{Binding Url}" Grid.Column="0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <Button Name="Delete" Width="160">Delete</Button>
-                            <Button Name="Update" Width="160">Update</Button>
-                            <Button Name="Play" Width="160">Play</Button>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

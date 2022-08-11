@@ -8,36 +8,57 @@ using Radio.Services;
 using Radio.ViewModels;
 using Radio.Views;
 
-namespace Radio
+namespace Radio;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public override void Initialize() => AvaloniaXamlLoader.Load(this);
+
+    public override void OnFrameworkInitializationCompleted()
     {
-        public override void Initialize() => AvaloniaXamlLoader.Load(this);
-
-        public override void OnFrameworkInitializationCompleted()
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            var database = new Database();
+            var radios = new MongoCRUD("Radios");
+            PopulateIfEmpty(radios);
+
+            desktop.MainWindow = new MainWindow
             {
-                var database = new Database();
-                var radios = new MongoCRUD("Radios");
-                radios.InsertRecord("FmRadios", new FmRadio
-                {
-                    Frequency = "88.80", Genres = new List<string> { "Pop", "Top40" }, Name = "Hitradio",
-                    Region = "Austria"
-                });
-                radios.InsertRecord("OnlineRadios", new OnlineRadio
-                {
-                    Guid = new Guid(), Genres = new List<string> { "House", "Alternative" }, Name = "Lounge.music",
-                    Url = "www.lounge.music"
-                });
-
-                desktop.MainWindow = new MainWindow
-                {
-                    DataContext =  new MainWindowViewModel(database),
-                };
-            }
-
-            base.OnFrameworkInitializationCompleted();
+                DataContext = new MainWindowViewModel(database),
+            };
         }
+
+        base.OnFrameworkInitializationCompleted();
+    }
+
+    private static void PopulateIfEmpty(MongoCRUD radios)
+    {
+        var fmRadios = radios.LoadRecords<FmRadio>("FmRadios");
+        var onlineRadios = radios.LoadRecords<OnlineRadio>("OnlineRadios");
+        if (fmRadios.Count == 0 && onlineRadios.Count == 0)
+        {
+            PopulateWithSampleData(radios);
+        }
+    }
+
+    private static void PopulateWithSampleData(MongoCRUD radios)
+    {
+        var fmRadio = new FmRadio
+        {
+            Frequency = "88.80", Genres = new List<string> { "Pop", "Top40" }, Name = "Hitradio",
+            Region = "Austria"
+        };
+
+        radios.InsertRecord("FmRadios", fmRadio);
+        radios.InsertRecord("FmRadios", fmRadio with { Guid = Guid.NewGuid(), Frequency = "99.90" });
+
+        var onlineRadio = new OnlineRadio
+        {
+            Genres = new List<string> { "House", "Alternative" }, Name = "Lounge.music",
+            Url = "www.lounge.music"
+        };
+
+        radios.InsertRecord("OnlineRadios", onlineRadio);
+        radios.InsertRecord("OnlineRadios", onlineRadio with { Guid = Guid.NewGuid(), Url = "www.st.com" });
     }
 }

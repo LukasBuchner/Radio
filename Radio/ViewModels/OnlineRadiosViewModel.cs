@@ -49,13 +49,14 @@ public class OnlineRadiosViewModel : ViewModelBase
 
     public void PlaySelectedRadio()
     {
-        //PlayMp3FromUrl(_selectedOnlineRadio.Url);
+        //PlayMp3FromUrl(_selectedOnlineRadio.Url); Wanted to get it to work with Naudio but only really works on Windows
         var uri = _selectedOnlineRadio.Url;
         var psi = new System.Diagnostics.ProcessStartInfo
         {
             UseShellExecute = true,
             FileName = uri
         };
+        
         System.Diagnostics.Process.Start(psi);
     }
 }

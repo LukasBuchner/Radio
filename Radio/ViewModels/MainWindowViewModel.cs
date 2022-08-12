@@ -108,4 +108,16 @@ public class MainWindowViewModel : ViewModelBase
 
         CurrentViewModel = vm;
     }
+
+    public void DeleteOnlineRadio(OnlineRadio onlineRadio)
+    {
+        _mongoCrud.DeleteRecord<OnlineRadio>("OnlineRadios", onlineRadio.Guid);
+        CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
+    }
+
+    public void DeleteFmRadio(FmRadio fmRadio)
+    {
+        _mongoCrud.DeleteRecord<FmRadio>("FmRadios", fmRadio.Guid);
+        CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
+    }
 }

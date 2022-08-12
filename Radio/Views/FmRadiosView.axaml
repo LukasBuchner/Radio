@@ -15,7 +15,9 @@
             <Button Command="{Binding $parent[Window].DataContext.AddFmRadio}">
                 Add FM radio
             </Button>
-            <Button Name="Delete">Delete</Button>
+            <Button Command="{Binding DeleteSelectedRadio}" Name="Delete">
+                Delete
+            </Button>
             <Button Command="{Binding EditSelectedRadio}" Name="Update">
                 Edit
             </Button>

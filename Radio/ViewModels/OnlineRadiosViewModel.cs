@@ -37,4 +37,9 @@ public class OnlineRadiosViewModel : ViewModelBase
     {
         _mainWindowViewModel.EditOnlineRadio(_selectedOnlineRadio);
     }
+
+    public void DeleteSelectedRadio()
+    {
+        _mainWindowViewModel.DeleteOnlineRadio(_selectedOnlineRadio);
+    }
 }

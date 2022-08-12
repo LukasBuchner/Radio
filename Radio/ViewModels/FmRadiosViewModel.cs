@@ -36,4 +36,9 @@ public class FmRadiosViewModel : ViewModelBase
     {
         _mainWindowViewModel.EditFmRadio(_selectedFmRadio);
     }
+
+    public void DeleteSelectedRadio()
+    {
+        _mainWindowViewModel.DeleteFmRadio(_selectedFmRadio);
+    }
 }

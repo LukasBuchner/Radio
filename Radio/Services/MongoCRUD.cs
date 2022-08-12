@@ -34,7 +34,7 @@ public class MongoCRUD
     public void DeleteRecord<T>(string table, Guid guid)
     {
         var collection = _mongoDatabase.GetCollection<T>(table);
-        var filter = Builders<T>.Filter.Eq("Id", guid);
+        var filter = Builders<T>.Filter.Eq("_id", guid);
         collection.DeleteOne(filter);
     }
 

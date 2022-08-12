@@ -28,4 +28,7 @@
         <PackageReference Include="MongoDB.Driver" Version="2.17.1"/>
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4"/>
     </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="Services\Database.cs"/>
+    </ItemGroup>
 </Project>

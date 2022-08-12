@@ -35,12 +35,12 @@ public class OnlineRadiosViewModel : ViewModelBase
 
     public void EditSelectedRadio()
     {
-        _mainWindowViewModel.EditOnlineRadio(_selectedOnlineRadio);
+        if (_selectedOnlineRadio != null) _mainWindowViewModel.EditOnlineRadio(_selectedOnlineRadio);
     }
 
     public void DeleteSelectedRadio()
     {
-        _mainWindowViewModel.DeleteOnlineRadio(_selectedOnlineRadio);
+        if (_selectedOnlineRadio != null) _mainWindowViewModel.DeleteOnlineRadio(_selectedOnlineRadio);
     }
 
     public void PlaySelectedRadio()

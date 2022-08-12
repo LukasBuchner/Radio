@@ -34,11 +34,11 @@ public class FmRadiosViewModel : ViewModelBase
 
     public void EditSelectedRadio()
     {
-        _mainWindowViewModel.EditFmRadio(_selectedFmRadio);
+        if (_selectedFmRadio != null) _mainWindowViewModel.EditFmRadio(_selectedFmRadio);
     }
 
     public void DeleteSelectedRadio()
     {
-        _mainWindowViewModel.DeleteFmRadio(_selectedFmRadio);
+        if (_selectedFmRadio != null) _mainWindowViewModel.DeleteFmRadio(_selectedFmRadio);
     }
 }

@@ -6,30 +6,30 @@ namespace Radio.ViewModels;
 
 public class AddFmRadioViewModel : ViewModelBase
 {
-    private string _name;
     private string _frequency;
+    private string _name;
 
     public AddFmRadioViewModel()
     {
-        var saveEnabled = this.WhenAnyValue(
+        var saveEnabled = this.WhenAnyValue<AddFmRadioViewModel, bool, string>(
             x => x.Name,
             x => !string.IsNullOrWhiteSpace(x));
 
         Save = ReactiveCommand.Create(
-            () => new FmRadio { Name = Name, Frequency = Frequency}, 
+            () => new FmRadio { Name = Name, Frequency = Frequency },
             saveEnabled);
         Cancel = ReactiveCommand.Create(() => { });
     }
-    
+
     public string Name
     {
-        get => _name; 
+        get => _name;
         set => this.RaiseAndSetIfChanged(ref _name, value);
     }
 
     public string Frequency
     {
-        get => _frequency; 
+        get => _frequency;
         set => this.RaiseAndSetIfChanged(ref _frequency, value);
     }
 

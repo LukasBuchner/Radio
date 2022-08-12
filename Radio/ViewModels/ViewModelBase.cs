@@ -1,8 +1,7 @@
 ﻿using ReactiveUI;
 
-namespace Radio.ViewModels
+namespace Radio.ViewModels;
+
+public class ViewModelBase : ReactiveObject
 {
-    public class ViewModelBase : ReactiveObject
-    {
-    }
 }

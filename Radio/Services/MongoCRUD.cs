@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -8,7 +7,7 @@ namespace Radio.Services;
 
 public class MongoCRUD
 {
-    private IMongoDatabase _mongoDatabase;
+    private readonly IMongoDatabase _mongoDatabase;
 
     public MongoCRUD(string database)
     {

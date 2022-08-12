@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Radio.Models;
-using Radio.Views;
 
 namespace Radio.Services;
 
@@ -17,17 +16,17 @@ public class Database
             Guid = new Guid(), Frequency = "88.80", Genres = new List<string> { "Pop", "Top40" }, Name = "Hitradio",
             Region = "Austria"
         };
-        
+
         return new[]
         {
-            _fmRadio with { Guid = new Guid()},
-            _fmRadio with { Guid = new Guid()}, 
-            _fmRadio with { Guid = new Guid()},
-            _fmRadio with { Guid = new Guid()},
-            _fmRadio with { Guid = new Guid()},
-            _fmRadio with { Guid = new Guid()},
-            _fmRadio with { Guid = new Guid()},
-            _fmRadio with { Guid = new Guid()}
+            _fmRadio with { Guid = new Guid() },
+            _fmRadio with { Guid = new Guid() },
+            _fmRadio with { Guid = new Guid() },
+            _fmRadio with { Guid = new Guid() },
+            _fmRadio with { Guid = new Guid() },
+            _fmRadio with { Guid = new Guid() },
+            _fmRadio with { Guid = new Guid() },
+            _fmRadio with { Guid = new Guid() }
         };
     }
 
@@ -42,7 +41,7 @@ public class Database
         return new[]
         {
             _onlineRadio with { Guid = new Guid() },
-            _onlineRadio with { Guid = new Guid() },
+            _onlineRadio with { Guid = new Guid() }
         };
     }
 }

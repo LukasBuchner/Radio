@@ -5,11 +5,11 @@
              xmlns:viewModels="clr-namespace:Radio.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Radio.Views.OnlineRadiosView">
-    
+
     <Design.DataContext>
-        <viewModels:OnlineRadiosViewModel/>
+        <viewModels:OnlineRadiosViewModel />
     </Design.DataContext>
-    
+
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
             <Button Command="{Binding $parent[Window].DataContext.AddOnlineRadio}">
@@ -25,21 +25,21 @@
                 Play
             </Button>
         </StackPanel>
-        
-        <ListBox  
-                 Items="{Binding OnlineRadios}" 
-                 SelectedItem="{Binding SelectedOnlineRadio}">
+
+        <ListBox
+            Items="{Binding OnlineRadios}"
+            SelectedItem="{Binding SelectedOnlineRadio}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="{Binding Guid}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Name}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Url}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Guid}" />
+                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding Url}" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-    </DockPanel> 
+    </DockPanel>
 </UserControl>

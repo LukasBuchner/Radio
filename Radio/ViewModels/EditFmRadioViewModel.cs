@@ -6,33 +6,30 @@ namespace Radio.ViewModels;
 
 public class EditFmRadioViewModel : ViewModelBase
 {
-    private readonly FmRadio _fmRadio;
-    private string _name;
-    private string _frequency;
+    private string? _frequency;
+    private string? _name;
 
     public EditFmRadioViewModel(FmRadio fmRadio)
     {
-        _fmRadio = fmRadio;
-        
-        var saveEnabled = this.WhenAnyValue(
+        var saveEnabled = this.WhenAnyValue<EditFmRadioViewModel, bool, string>(
             x => x.Name,
             x => !string.IsNullOrWhiteSpace(x));
 
         Save = ReactiveCommand.Create(
-            () => _fmRadio with { Name = Name, Frequency = Frequency}, 
+            () => fmRadio with { Name = Name, Frequency = Frequency },
             saveEnabled);
         Cancel = ReactiveCommand.Create(() => { });
     }
-    
-    public string Name
+
+    public string? Name
     {
-        get => _name; 
+        get => _name;
         set => this.RaiseAndSetIfChanged(ref _name, value);
     }
 
-    public string Frequency
+    public string? Frequency
     {
-        get => _frequency; 
+        get => _frequency;
         set => this.RaiseAndSetIfChanged(ref _frequency, value);
     }
 

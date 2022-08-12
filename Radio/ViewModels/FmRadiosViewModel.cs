@@ -9,17 +9,15 @@ public class FmRadiosViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _mainWindowViewModel;
 
+    private FmRadio _selectedFmRadio;
+
     public FmRadiosViewModel(IEnumerable<FmRadio> fmRadios, MainWindowViewModel mainWindowViewModel)
     {
         _mainWindowViewModel = mainWindowViewModel;
         FmRadios = new ObservableCollection<FmRadio>(fmRadios);
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
     public ObservableCollection<FmRadio> FmRadios { get; }
-
-    private FmRadio _selectedFmRadio;
 
     public FmRadio SelectedFmRadio
     {
@@ -31,7 +29,9 @@ public class FmRadiosViewModel : ViewModelBase
                 new PropertyChangedEventArgs(nameof(SelectedFmRadio)));
         }
     }
-    
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
     public void EditSelectedRadio()
     {
         _mainWindowViewModel.EditFmRadio(_selectedFmRadio);

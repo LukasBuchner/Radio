@@ -5,11 +5,11 @@
              xmlns:viewModels="clr-namespace:Radio.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Radio.Views.FmRadiosView">
-    
+
     <Design.DataContext>
-        <viewModels:FmRadiosViewModel/>
+        <viewModels:FmRadiosViewModel />
     </Design.DataContext>
-    
+
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
             <Button Command="{Binding $parent[Window].DataContext.AddFmRadio}">
@@ -23,15 +23,15 @@
             </Button>
         </StackPanel>
         <ListBox
-                Items="{Binding FmRadios}" 
-                SelectedItem="{Binding SelectedFmRadio}">
+            Items="{Binding FmRadios}"
+            SelectedItem="{Binding SelectedFmRadio}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="{Binding Guid}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Name}" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Frequency}" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Guid}" />
+                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding Frequency}" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

@@ -9,21 +9,21 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Radio">
 
-        <Design.DataContext>
-                <vm:MainWindowViewModel/>
-        </Design.DataContext>
-        
-        <Window.DataTemplates>
-                <DataTemplate DataType="vm:RadiosViewModel">
-                        <views:RadiosView/>
-                </DataTemplate>  
-                <DataTemplate DataType="vm:AddFmRadioViewModel">
-                        <views:AddFmRadioView/>
-                </DataTemplate>  
-                <DataTemplate DataType="vm:AddOnlineRadioViewModel">
-                        <views:AddOnlineRadioView/>
-                </DataTemplate>  
-        </Window.DataTemplates>
-                
-        <ContentControl Content="{Binding CurrentViewModel}"/>
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="vm:RadiosViewModel">
+            <views:RadiosView />
+        </DataTemplate>
+        <DataTemplate DataType="vm:AddFmRadioViewModel">
+            <views:AddFmRadioView />
+        </DataTemplate>
+        <DataTemplate DataType="vm:AddOnlineRadioViewModel">
+            <views:AddOnlineRadioView />
+        </DataTemplate>
+    </Window.DataTemplates>
+
+    <ContentControl Content="{Binding CurrentViewModel}" />
 </Window>

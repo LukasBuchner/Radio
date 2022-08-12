@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reactive.Linq;
-using ReactiveUI;
 using Radio.Models;
 using Radio.Services;
+using ReactiveUI;
 
 namespace Radio.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase _currentViewModel;
     //private RadiosViewModel _radiosViewModel;
-    private MongoCRUD _mongoCrud;
+    private readonly MongoCRUD _mongoCrud;
+    private ViewModelBase _currentViewModel;
 
     public MainWindowViewModel(MongoCRUD mongoCrud)
     {
         _mongoCrud = mongoCrud;
         CurrentViewModel = new RadiosViewModel(mongoCrud, this);
     }
-    
+
     public ViewModelBase CurrentViewModel
     {
         get => _currentViewModel;
@@ -37,10 +36,7 @@ public class MainWindowViewModel : ViewModelBase
             .Take(1)
             .Subscribe(model =>
             {
-                if (model != null)
-                {
-                    _mongoCrud.UpsertRecord("FmRadios", model.Guid, model);
-                }
+                if (model != null) _mongoCrud.UpsertRecord("FmRadios", model.Guid, model);
 
                 CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
             });
@@ -51,15 +47,12 @@ public class MainWindowViewModel : ViewModelBase
     public void AddFmRadio()
     {
         var vm = new AddFmRadioViewModel();
-        
+
         vm.Save.Merge(vm.Cancel.Select(_ => (FmRadio)null))
             .Take(1)
             .Subscribe(model =>
             {
-                if (model != null)
-                {
-                    _mongoCrud.InsertRecord("FmRadios", model);
-                }
+                if (model != null) _mongoCrud.InsertRecord("FmRadios", model);
 
                 CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
             });
@@ -70,15 +63,12 @@ public class MainWindowViewModel : ViewModelBase
     public void AddOnlineRadio()
     {
         var vm = new AddOnlineRadioViewModel();
-        
+
         vm.Save.Merge(vm.Cancel.Select(_ => (OnlineRadio)null))
             .Take(1)
             .Subscribe(model =>
             {
-                if (model != null)
-                {
-                    _mongoCrud.InsertRecord("OnlineRadios", model);
-                }
+                if (model != null) _mongoCrud.InsertRecord("OnlineRadios", model);
 
                 CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
             });
@@ -98,10 +88,7 @@ public class MainWindowViewModel : ViewModelBase
             .Take(1)
             .Subscribe(model =>
             {
-                if (model != null)
-                {
-                    _mongoCrud.UpsertRecord("OnlineRadios", model.Guid, model);
-                }
+                if (model != null) _mongoCrud.UpsertRecord("OnlineRadios", model.Guid, model);
 
                 CurrentViewModel = new RadiosViewModel(_mongoCrud, this);
             });

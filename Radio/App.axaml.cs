@@ -10,21 +10,23 @@ using Radio.Views;
 
 namespace Radio;
 
-public partial class App : Application
+public class App : Application
 {
-    public override void Initialize() => AvaloniaXamlLoader.Load(this);
+    public override void Initialize()
+    {
+        AvaloniaXamlLoader.Load(this);
+    }
 
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var database = new Database();
             var radios = new MongoCRUD("Radios");
             PopulateIfEmpty(radios);
 
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(radios),
+                DataContext = new MainWindowViewModel(radios)
             };
         }
 
@@ -35,10 +37,7 @@ public partial class App : Application
     {
         var fmRadios = radios.LoadRecords<FmRadio>("FmRadios");
         var onlineRadios = radios.LoadRecords<OnlineRadio>("OnlineRadios");
-        if (fmRadios.Count == 0 && onlineRadios.Count == 0)
-        {
-            PopulateWithSampleData(radios);
-        }
+        if (fmRadios.Count == 0 && onlineRadios.Count == 0) PopulateWithSampleData(radios);
     }
 
     private static void PopulateWithSampleData(MongoCRUD radios)

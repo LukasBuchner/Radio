@@ -6,13 +6,13 @@
              xmlns:viewModels="clr-namespace:Radio.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Radio.Views.RadiosView">
-    
+
     <Design.DataContext>
-        <viewModels:RadiosViewModel/>
+        <viewModels:RadiosViewModel />
     </Design.DataContext>
 
     <Grid ColumnDefinitions="*,*">
-        <views:OnlineRadiosView Grid.Column="0" DataContext="{Binding OnlineRadiosViewModel}"/>
-        <views:FmRadiosView Grid.Column="1" DataContext="{Binding FmRadiosViewModel}"/>
+        <views:OnlineRadiosView Grid.Column="0" DataContext="{Binding OnlineRadiosViewModel}" />
+        <views:FmRadiosView Grid.Column="1" DataContext="{Binding FmRadiosViewModel}" />
     </Grid>
 </UserControl>

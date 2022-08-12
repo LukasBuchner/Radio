@@ -6,8 +6,8 @@ namespace Radio.Models;
 
 public record RadioStation
 {
-    [BsonId]
-    public Guid Guid { get; set; }
-    public string Name { get; set; }
-    public List<string> Genres { get; set; }    
+    [BsonId] public Guid Guid { get; set; }
+
+    public string? Name { get; set; }
+    public List<string> Genres { get; set; }
 }

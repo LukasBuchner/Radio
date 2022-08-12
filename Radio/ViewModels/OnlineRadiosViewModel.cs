@@ -1,11 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
-using System.Net;
-using System.Threading;
-using System.Windows.Input;
-using NAudio.Wave;
+using System.Diagnostics;
 using Radio.Models;
 
 namespace Radio.ViewModels;
@@ -14,17 +10,15 @@ public class OnlineRadiosViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _mainWindowViewModel;
 
+    private OnlineRadio _selectedOnlineRadio;
+
     public OnlineRadiosViewModel(IEnumerable<OnlineRadio> onlineRadios, MainWindowViewModel mainWindowViewModel)
     {
         _mainWindowViewModel = mainWindowViewModel;
         OnlineRadios = new ObservableCollection<OnlineRadio>(onlineRadios);
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
     public ObservableCollection<OnlineRadio> OnlineRadios { get; }
-
-    private OnlineRadio _selectedOnlineRadio;
 
     public OnlineRadio SelectedOnlineRadio
     {
@@ -36,6 +30,8 @@ public class OnlineRadiosViewModel : ViewModelBase
                 new PropertyChangedEventArgs(nameof(SelectedOnlineRadio)));
         }
     }
+
+    public event PropertyChangedEventHandler PropertyChanged;
 
     public void EditSelectedRadio()
     {
@@ -51,12 +47,12 @@ public class OnlineRadiosViewModel : ViewModelBase
     {
         //PlayMp3FromUrl(_selectedOnlineRadio.Url); Wanted to get it to work with Naudio but only really works on Windows
         var uri = _selectedOnlineRadio.Url;
-        var psi = new System.Diagnostics.ProcessStartInfo
+        var psi = new ProcessStartInfo
         {
             UseShellExecute = true,
             FileName = uri
         };
-        
-        System.Diagnostics.Process.Start(psi);
+
+        Process.Start(psi);
     }
 }

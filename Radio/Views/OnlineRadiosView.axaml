@@ -21,7 +21,9 @@
             <Button Command="{Binding EditSelectedRadio}" Name="Update">
                 Edit
             </Button>
-            <Button Name="Play">Play</Button>
+            <Button Command="{Binding PlaySelectedRadio}" Name="Play">
+                Play
+            </Button>
         </StackPanel>
         
         <ListBox  

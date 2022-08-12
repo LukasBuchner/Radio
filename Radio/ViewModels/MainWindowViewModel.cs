@@ -77,7 +77,7 @@ public class MainWindowViewModel : ViewModelBase
             {
                 if (model != null)
                 {
-                    _mongoCrud.InsertRecord("OnlineRadio", model);
+                    _mongoCrud.InsertRecord("OnlineRadios", model);
                 }
 
                 CurrentViewModel = new RadiosViewModel(_mongoCrud, this);

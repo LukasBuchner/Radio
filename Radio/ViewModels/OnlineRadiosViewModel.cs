@@ -1,7 +1,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Net;
+using System.Threading;
 using System.Windows.Input;
+using NAudio.Wave;
 using Radio.Models;
 
 namespace Radio.ViewModels;
@@ -41,5 +45,17 @@ public class OnlineRadiosViewModel : ViewModelBase
     public void DeleteSelectedRadio()
     {
         _mainWindowViewModel.DeleteOnlineRadio(_selectedOnlineRadio);
+    }
+
+    public void PlaySelectedRadio()
+    {
+        //PlayMp3FromUrl(_selectedOnlineRadio.Url);
+        var uri = _selectedOnlineRadio.Url;
+        var psi = new System.Diagnostics.ProcessStartInfo
+        {
+            UseShellExecute = true,
+            FileName = uri
+        };
+        System.Diagnostics.Process.Start(psi);
     }
 }

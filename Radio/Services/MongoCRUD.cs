@@ -43,4 +43,9 @@ public class MongoCRUD
 
         return collection.Find(new BsonDocument()).ToList();
     }
+
+    public void DeleteTable(string table)
+    {
+        _mongoDatabase.DropCollection(table);
+    }
 }

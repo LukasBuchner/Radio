@@ -6,20 +6,17 @@ namespace Radio.ViewModels;
 
 public class EditOnlineRadioViewModel : ViewModelBase
 {
-    private readonly OnlineRadio _onlineRadio;
     private string? _name;
-    private string _url;
+    private string? _url;
 
-    public EditOnlineRadioViewModel(OnlineRadio onlineRadio)
+    public EditOnlineRadioViewModel(OnlineRadio? onlineRadio)
     {
-        _onlineRadio = onlineRadio;
-
         var saveEnabled = this.WhenAnyValue<EditOnlineRadioViewModel, bool, string>(
             x => x.Name,
             x => !string.IsNullOrWhiteSpace(x));
 
         Save = ReactiveCommand.Create(
-            () => _onlineRadio with { Name = Name, Url = Url },
+            () => onlineRadio with { Name = Name, Url = Url },
             saveEnabled);
         Cancel = ReactiveCommand.Create(() => { });
     }
@@ -30,7 +27,7 @@ public class EditOnlineRadioViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _name, value);
     }
 
-    public string Url
+    public string? Url
     {
         get => _url;
         set => this.RaiseAndSetIfChanged(ref _url, value);

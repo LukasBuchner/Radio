@@ -76,7 +76,7 @@ public class MainWindowViewModel : ViewModelBase
         CurrentViewModel = vm;
     }
 
-    public void EditOnlineRadio(OnlineRadio onlineRadio)
+    public void EditOnlineRadio(OnlineRadio? onlineRadio)
     {
         var vm = new EditOnlineRadioViewModel(onlineRadio)
         {
@@ -96,7 +96,7 @@ public class MainWindowViewModel : ViewModelBase
         CurrentViewModel = vm;
     }
 
-    public void DeleteOnlineRadio(OnlineRadio onlineRadio)
+    public void DeleteOnlineRadio(OnlineRadio? onlineRadio)
     {
         _mongoCrud.DeleteRecord<OnlineRadio>("OnlineRadios", onlineRadio.Guid);
         CurrentViewModel = new RadiosViewModel(_mongoCrud, this);

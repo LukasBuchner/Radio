@@ -10,7 +10,7 @@ public class OnlineRadiosViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _mainWindowViewModel;
 
-    private OnlineRadio _selectedOnlineRadio;
+    private OnlineRadio? _selectedOnlineRadio;
 
     public OnlineRadiosViewModel(IEnumerable<OnlineRadio> onlineRadios, MainWindowViewModel mainWindowViewModel)
     {
@@ -20,7 +20,7 @@ public class OnlineRadiosViewModel : ViewModelBase
 
     public ObservableCollection<OnlineRadio> OnlineRadios { get; }
 
-    public OnlineRadio SelectedOnlineRadio
+    public OnlineRadio? SelectedOnlineRadio
     {
         get => _selectedOnlineRadio;
         set
@@ -31,7 +31,7 @@ public class OnlineRadiosViewModel : ViewModelBase
         }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public new event PropertyChangedEventHandler? PropertyChanged;
 
     public void EditSelectedRadio()
     {
@@ -45,7 +45,8 @@ public class OnlineRadiosViewModel : ViewModelBase
 
     public void PlaySelectedRadio()
     {
-        //PlayMp3FromUrl(_selectedOnlineRadio.Url); Wanted to get it to work with Naudio but only really works on Windows
+        //PlayMp3FromUrl(_selectedOnlineRadio.Url); Wanted to get it to work with audio locally but only really works on Windows
+        if (_selectedOnlineRadio == null) return;
         var uri = _selectedOnlineRadio.Url;
         var psi = new ProcessStartInfo
         {

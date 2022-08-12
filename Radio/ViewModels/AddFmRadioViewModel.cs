@@ -6,8 +6,8 @@ namespace Radio.ViewModels;
 
 public class AddFmRadioViewModel : ViewModelBase
 {
-    private string _frequency;
-    private string _name;
+    private string? _frequency;
+    private string? _name;
 
     public AddFmRadioViewModel()
     {
@@ -21,13 +21,13 @@ public class AddFmRadioViewModel : ViewModelBase
         Cancel = ReactiveCommand.Create(() => { });
     }
 
-    public string Name
+    public string? Name
     {
         get => _name;
         set => this.RaiseAndSetIfChanged(ref _name, value);
     }
 
-    public string Frequency
+    public string? Frequency
     {
         get => _frequency;
         set => this.RaiseAndSetIfChanged(ref _frequency, value);

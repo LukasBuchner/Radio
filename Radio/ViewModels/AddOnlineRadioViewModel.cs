@@ -6,8 +6,8 @@ namespace Radio.ViewModels;
 
 public class AddOnlineRadioViewModel : ViewModelBase
 {
-    private string _name;
-    private string _url;
+    private string? _name;
+    private string? _url;
 
     public AddOnlineRadioViewModel()
     {
@@ -21,13 +21,13 @@ public class AddOnlineRadioViewModel : ViewModelBase
         Cancel = ReactiveCommand.Create(() => { });
     }
 
-    public string Name
+    public string? Name
     {
         get => _name;
         set => this.RaiseAndSetIfChanged(ref _name, value);
     }
 
-    public string Url
+    public string? Url
     {
         get => _url;
         set => this.RaiseAndSetIfChanged(ref _url, value);

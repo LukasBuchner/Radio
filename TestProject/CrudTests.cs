@@ -30,7 +30,7 @@ public class CrudTests
         };
 
         var records = _mongoCrud.LoadRecords<TestRecord>(table);
-        Assert.That(records, Does.Not.Contain(record));
+        Assume.That(records, Does.Not.Contain(record));
 
         _mongoCrud.InsertRecord(table, record);
 
@@ -50,13 +50,35 @@ public class CrudTests
 
         _mongoCrud.InsertRecord(table, record);
         var records = _mongoCrud.LoadRecords<TestRecord>(table);
-        Assert.That(records, Does.Contain(record));
+        Assume.That(records, Does.Contain(record));
 
         _mongoCrud.DeleteRecord<TestRecord>(table, record.Guid);
 
         records = _mongoCrud.LoadRecords<TestRecord>(table);
 
         Assert.That(records, Does.Not.Contain(record));
+    }
+
+    [Test]
+    public void TestLoadRecords()
+    {
+        var record1 = new TestRecord
+        {
+            Guid = Guid.NewGuid(),
+            Name = "Record 1"
+        };
+        var record2 = new TestRecord
+        {
+            Guid = Guid.NewGuid(),
+            Name = "Record 2"
+        };
+
+        _mongoCrud.InsertRecord(table, record1);
+        _mongoCrud.InsertRecord(table, record2);
+        var actualRecords = new List<TestRecord> { record1, record2 };
+
+        var records = _mongoCrud.LoadRecords<TestRecord>(table);
+        Assert.That(records, Is.EqualTo(actualRecords));
     }
 
     private record TestRecord

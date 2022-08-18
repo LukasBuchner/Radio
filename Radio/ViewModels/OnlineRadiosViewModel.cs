@@ -9,16 +9,20 @@ namespace Radio.ViewModels;
 public class OnlineRadiosViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _mainWindowViewModel;
+    private Genre? _selectedGenre;
 
     private OnlineRadio? _selectedOnlineRadio;
 
-    public OnlineRadiosViewModel(IEnumerable<OnlineRadio> onlineRadios, MainWindowViewModel mainWindowViewModel)
+    public OnlineRadiosViewModel(IEnumerable<OnlineRadio> onlineRadios, IEnumerable<Genre> genres,
+        MainWindowViewModel mainWindowViewModel)
     {
         _mainWindowViewModel = mainWindowViewModel;
         OnlineRadios = new ObservableCollection<OnlineRadio>(onlineRadios);
+        Genres = new ObservableCollection<Genre>(genres) { new Genre() };
     }
 
     public ObservableCollection<OnlineRadio> OnlineRadios { get; }
+    public ObservableCollection<Genre> Genres { get; }
 
     public OnlineRadio? SelectedOnlineRadio
     {
@@ -28,6 +32,16 @@ public class OnlineRadiosViewModel : ViewModelBase
             _selectedOnlineRadio = value;
             PropertyChanged?.Invoke(this,
                 new PropertyChangedEventArgs(nameof(SelectedOnlineRadio)));
+        }
+    }
+
+    public Genre? SelectedGenre
+    {
+        get => _selectedGenre;
+        set
+        {
+            _selectedGenre = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedGenre)));
         }
     }
 

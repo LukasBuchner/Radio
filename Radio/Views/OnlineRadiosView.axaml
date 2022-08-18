@@ -12,6 +12,13 @@
 
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+            <ComboBox SelectedItem="{Binding SelectedGenre}" Items="{Binding Genres}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button Command="{Binding $parent[Window].DataContext.AddOnlineRadio}">
                 Add online radio
             </Button>

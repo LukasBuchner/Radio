@@ -8,7 +8,8 @@ public class RadiosViewModel : ViewModelBase
     public RadiosViewModel(MongoCRUD mongoCrud, MainWindowViewModel mainWindowViewModel)
     {
         OnlineRadiosViewModel =
-            new OnlineRadiosViewModel(mongoCrud.LoadRecords<OnlineRadio>("OnlineRadios"), mainWindowViewModel);
+            new OnlineRadiosViewModel(mongoCrud.LoadRecords<OnlineRadio>("OnlineRadios"),
+                mongoCrud.LoadRecords<Genre>("Genres"), mainWindowViewModel);
         FmRadiosViewModel = new FmRadiosViewModel(mongoCrud.LoadRecords<FmRadio>("FmRadios"), mainWindowViewModel);
     }
 

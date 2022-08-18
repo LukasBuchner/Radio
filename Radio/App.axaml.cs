@@ -37,7 +37,8 @@ public class App : Application
     {
         var fmRadios = radios.LoadRecords<FmRadio>("FmRadios");
         var onlineRadios = radios.LoadRecords<OnlineRadio>("OnlineRadios");
-        if (fmRadios.Count == 0 && onlineRadios.Count == 0) PopulateWithSampleData(radios);
+        var genre = radios.LoadRecords<Genre>("Genre");
+        if (fmRadios.Count == 0 && onlineRadios.Count == 0 && genre.Count == 0) PopulateWithSampleData(radios);
     }
 
     private static void PopulateWithSampleData(MongoCRUD radios)
@@ -59,5 +60,10 @@ public class App : Application
 
         radios.InsertRecord("OnlineRadios", onlineRadio);
         radios.InsertRecord("OnlineRadios", onlineRadio with { Guid = Guid.NewGuid(), Url = "www.st.com" });
+
+        radios.InsertRecord("Genres", new Genre { Name = "Classical" });
+        radios.InsertRecord("Genres", new Genre { Name = "Pop" });
+        radios.InsertRecord("Genres", new Genre { Name = "Rock" });
+        radios.InsertRecord("Genres", new Genre { Name = "Indy" });
     }
 }

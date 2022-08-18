@@ -62,7 +62,7 @@ public class MainWindowViewModel : ViewModelBase
 
     public void AddOnlineRadio()
     {
-        var vm = new AddOnlineRadioViewModel();
+        var vm = new AddOnlineRadioViewModel(_mongoCrud.LoadRecords<Genre>("Genres"));
 
         vm.Save.Merge(vm.Cancel.Select(_ => (OnlineRadio)null))
             .Take(1)

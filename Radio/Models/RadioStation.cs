@@ -10,4 +10,5 @@ public record RadioStation
 
     public string? Name { get; set; }
     public List<string> Genres { get; set; }
+    public Genre Genre { get; set; }
 }

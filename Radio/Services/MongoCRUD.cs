@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
 namespace Radio.Services;
@@ -42,6 +43,23 @@ public class MongoCRUD
         var collection = _mongoDatabase.GetCollection<T>(table);
 
         return collection.Find(new BsonDocument()).ToList();
+    }
+
+    public List<T> Find<T, T1>(string table, string attribute, T1 value)
+    {
+        var collection = _mongoDatabase.GetCollection<BsonDocument>(table);
+        var builder = Builders<BsonDocument>.Filter;
+        var filter = builder.Eq(attribute, value);
+
+        //return collection.Find(new BsonDocument()).ToList();
+        var documents = collection.Find(filter).ToList();
+        var list = new List<T>();
+        foreach (var document in documents)
+        {
+            list.Add(BsonSerializer.Deserialize<T>(document));
+        }
+
+        return list;
     }
 
     public void DeleteTable(string table)

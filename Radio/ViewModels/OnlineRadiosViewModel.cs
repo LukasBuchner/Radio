@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -61,9 +63,19 @@ public class OnlineRadiosViewModel : ViewModelBase
 
     private void SelectedGenreChanged()
     {
-        var onlineRadios = _mongoCrud.Find<OnlineRadio, Genre>("OnlineRadios", "Genre", _selectedGenre);
+        var onlineRadios = new List<OnlineRadio>();
+        onlineRadios = _selectedGenre.Guid == Guid.Empty
+            ? _mongoCrud.LoadRecords<OnlineRadio>("OnlineRadios")
+            : _mongoCrud.Find<OnlineRadio, Genre>("OnlineRadios",
+                "Genre",
+                _selectedGenre);
+
+        OnlineRadios.Clear();
+        foreach (var onlineRadio in onlineRadios)
+        {
+            OnlineRadios.Add(onlineRadio);
+        }
         // The next step does not work this way!!! 
-        OnlineRadios = new ObservableCollection<OnlineRadio>(onlineRadios);
     }
 
     public new event PropertyChangedEventHandler? PropertyChanged;

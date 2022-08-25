@@ -21,6 +21,7 @@
             <TextBox Text="{Binding Name }" Watermark="Enter the station's name!" />
             <TextBlock Text="Url:" />
             <TextBox Text="{Binding Url}" Watermark="Enter the URL" />
+            <TextBlock Text="Genre:" />
             <ComboBox SelectedItem="{Binding SelectedGenre}" Items="{Binding Genres}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

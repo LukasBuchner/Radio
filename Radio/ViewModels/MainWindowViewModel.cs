@@ -78,7 +78,7 @@ public class MainWindowViewModel : ViewModelBase
 
     public void EditOnlineRadio(OnlineRadio? onlineRadio)
     {
-        var vm = new EditOnlineRadioViewModel(onlineRadio)
+        var vm = new EditOnlineRadioViewModel(onlineRadio, _mongoCrud.LoadRecords<Genre>("Genres"))
         {
             Name = onlineRadio.Name,
             Url = onlineRadio.Url
